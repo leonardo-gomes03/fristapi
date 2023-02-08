@@ -1,4 +1,5 @@
 // Init
+require('dotenv').config();
 const mongoose = require('mongoose');
 const express = require('express')
 const app = express()
@@ -25,8 +26,8 @@ app.get('/', (req, res) => {
 })
 
 // entregar portac
-const USER_DB = 'leonardo-gomes03';
-const PASSWORD_DB = encodeURIComponent('drika2003');
+const USER_DB = process.env.USER_DB;
+const PASSWORD_DB = encodeURIComponent(process.env.PASSWORD_DB);
 
 mongoose
 .connect(
