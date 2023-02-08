@@ -7,8 +7,8 @@ const Person = require("../models/Person");
 router.post("/", async (req, res) => {
   const { name, id } = req.body;
 
-  if (!name) {
-    res.status(422).json({ error: "O nome é Obrigatorio" });
+  if (!name || !id) {
+    res.status(422).json({ error: "É obrigatório ter um nome e id" });
     return;
   }
 

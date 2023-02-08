@@ -2,7 +2,7 @@ const router = require("express").Router();
 
 const { Router } = require("express");
 const Book = require("../models/Book");
-
+const Author = require("./personRoutes")
 //Create a object
 router.post("/", async (req, res) => {
   const { name, id } = req.body;
@@ -15,7 +15,7 @@ router.post("/", async (req, res) => {
   const book = {
     name,
     id
-  };
+    };
   try {
     await Book.create(book);
     res.status(201).json({ message: "Livro Inserido" });
