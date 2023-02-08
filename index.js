@@ -18,6 +18,10 @@ const personRoutes = require('./routes/personRoutes')
 
 app.use('/person', personRoutes)
 
+const bookRoutes = require('./routes/bookRoutes')
+
+app.use('/items', bookRoutes)
+
 
 // endpoint
 app.get('/', (req, res) => {
