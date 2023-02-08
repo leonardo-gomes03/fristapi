@@ -33,7 +33,6 @@ mongoose
     `mongodb+srv://${USER_DB}:${PASSWORD_DB}@cluster0.dzbwvzc.mongodb.net/?retryWrites=true&w=majority`
 )
 .then(() => {
-    console.log("oi")
     app.listen(3000)
 })
 .catch((err) => {

@@ -3,7 +3,7 @@ const router = require('express').Router();
 const { Router } = require('express');
 const Person = require('../models/Person')
 
-//create
+//Create a object
 router.post('/', async (req, res) => {
 
     const {name, id} = req.body;
@@ -26,7 +26,8 @@ router.post('/', async (req, res) => {
         res.status(500).json({error: error})
     }
 })
-//read
+
+//Read data
 
 router.get('/', async (req,res) => {
     try {
@@ -36,11 +37,11 @@ router.get('/', async (req,res) => {
         res.status(500).json({erro: error})
     }
 })
-
+// Get by id
 router.get('/:id', async(req,res) => {
-    const id = req.params.id
+    const idd = req.params.id
     try {
-        const person = await Person.findOne({_id : id})
+        const person = await Person.findOne({id : idd})
 
         res.status(200).json(person)
     } catch (error) {
@@ -53,15 +54,17 @@ router.patch('/:id', async (req,res) => {
     const idd = req.params.id
     const {name, id} = req.body;
     const person = {
-        name,
+        name,   
         id,
     }
     try {
-        const updatePerson = await Person.updateOne({_id: id}, person)
+        const updatePerson = await Person.updateOne({id: idd}, person)
         res.status(200).json(person)
     } catch(erro){
         res.status(500).json({error: error})
     }
 })
+
+
 
 module.exports = router
