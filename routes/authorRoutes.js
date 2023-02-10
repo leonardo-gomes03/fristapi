@@ -3,16 +3,16 @@ const fs = require("fs");
 
 //Create a object
 router.post("/", async (req, res) => {
-  const { id, title, authorId } = req.body;
-  const book = {
+  const { id, name } = req.body;
+  const author = {
     id,
-    title,
-    authorId
+    name,
+    books: []
   };
-  const pathFile = "books.json";
+  const pathFile = "authors.json";
   try {
     const atualBD = JSON.parse(fs.readFileSync(pathFile));
-    atualBD.push(book);
+    atualBD.push(author);
     fs.writeFileSync(pathFile, JSON.stringify(atualBD));
     res.status(201).json({ message: "Livro Inserido" });
   } catch (error) {
@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const pathFile = "books.json";
+    const pathFile = "authors.json";
     const showDB = JSON.parse(fs.readFileSync(pathFile));
     res.status(200).json(showDB);
   } catch (error) {
@@ -33,7 +33,7 @@ router.get("/", async (req, res) => {
 });
 router.patch("/:id", async (req, res) => {
   try {
-    const pathFile = "books.json";
+    const pathFile = "authors.json";
     const showDB = JSON.parse(fs.readFileSync(pathFile));
     const id = req.params.id;
     const index = showDB.findIndex(item => item.id == id);
@@ -46,7 +46,7 @@ router.patch("/:id", async (req, res) => {
 });
 router.delete("/:id", async (req, res) => {
     try {
-      const pathFile = "books.json";
+      const pathFile = "authors.json";
       const showDB = JSON.parse(fs.readFileSync(pathFile));
       const id = req.params.id;
       const index = showDB.findIndex(item => item.id == id);
